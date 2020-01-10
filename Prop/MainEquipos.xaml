@@ -1,0 +1,17 @@
+﻿<Window x:Class="Prop.MainEquipos"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Prop"
+        mc:Ignorable="d"
+        Title="MainEquipos" Height="450" Width="800" ResizeMode="NoResize" Loaded="Window_Loaded">
+    <Grid>
+        <ComboBox x:Name="cmbEquipos" HorizontalAlignment="Left" Margin="65,72,0,0" VerticalAlignment="Top" Width="174"/>
+        <Button x:Name="btnSelecciona" Content="Selecciona" HorizontalAlignment="Left" Margin="117,138,0,0" VerticalAlignment="Top" Width="75" Click="btnSelecciona_Click"/>
+        <TextBox x:Name="txtNombreEquipo" HorizontalAlignment="Left" Height="23" Margin="524,25,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+        <Button x:Name="btnCreaEquipo" Content="Crea al equipo" HorizontalAlignment="Left" Margin="524,373,0,0" VerticalAlignment="Top" Width="125" Click="btnCreaEquipo_Click"/>
+        <DataGrid x:Name="dgdEquipos" HorizontalAlignment="Left" Height="219" Margin="354,91,0,0" VerticalAlignment="Top" Width="418" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="False"/>
+
+    </Grid>
+</Window>
