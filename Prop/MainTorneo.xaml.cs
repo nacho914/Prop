@@ -59,7 +59,6 @@ namespace Prop
                 main.Show();
                 this.Close();
 
-
             }
         }
 

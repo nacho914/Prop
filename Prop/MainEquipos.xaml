@@ -8,24 +8,30 @@
         Title="MainEquipos" Height="450" Width="907" ResizeMode="NoResize" Loaded="Window_Loaded">
     <Grid>
         <ComboBox x:Name="cmbEquipos" HorizontalAlignment="Left" Margin="17,72,0,0" VerticalAlignment="Top" Width="174" SelectionChanged="cmbEquipos_SelectionChanged"/>
-        <Button x:Name="btnSelecciona" Content="Selecciona" HorizontalAlignment="Left" Margin="65,138,0,0" VerticalAlignment="Top" Width="75" Click="btnSelecciona_Click"/>
-        <TextBox x:Name="txtNombreEquipo" HorizontalAlignment="Left" Height="23" Margin="614,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+        <TextBox x:Name="txtNombreEquipo" HorizontalAlignment="Left" Height="23" Margin="614,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="btnCreaEquipo" Content="Crea al equipo" HorizontalAlignment="Left" Margin="524,382,0,0" VerticalAlignment="Top" Width="125" Click="btnCreaEquipo_Click"/>
-        <ListView Margin="431,137,49,57" Name="lvUsers" SelectionChanged="lvUsers_SelectionChanged">
+        <ListView Margin="409,96,10,98" Name="lvUsers" MouseDoubleClick="lvUsers_MouseDoubleClick">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="nombre" Width="120" DisplayMemberBinding="{Binding nombre}" />
                     <GridViewColumn Header="apellido Paterno" Width="120" DisplayMemberBinding="{Binding apellidoPaterno}" />
                     <GridViewColumn Header="apellido Materno" Width="120" DisplayMemberBinding="{Binding apellidoMaterno}" />
                     <GridViewColumn Header="numero" Width="54" DisplayMemberBinding="{Binding numero}" />
+                    <GridViewColumn Header="Eliminar" Width="54">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox Tag="{Binding}" IsChecked="{Binding eliminado}" IsThreeState="False"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
-        <TextBox x:Name="txtNombreJugador" HorizontalAlignment="Left" Height="23" Margin="257,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
-        <TextBox x:Name="txApellidoPaterno" HorizontalAlignment="Left" Height="23" Margin="232,169,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="163" IsEnabled="False"/>
-        <TextBox x:Name="txtApellidoMaterno" HorizontalAlignment="Left" Height="23" Margin="232,238,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="163" IsEnabled="False"/>
+        <TextBox x:Name="txtNombreJugador" HorizontalAlignment="Left" Height="23" Margin="257,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txApellidoPaterno" HorizontalAlignment="Left" Height="23" Margin="232,169,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="163"/>
+        <TextBox x:Name="txtApellidoMaterno" HorizontalAlignment="Left" Height="23" Margin="232,238,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="163"/>
         <TextBox x:Name="txtNumero" HorizontalAlignment="Left" Height="23" Margin="293,291,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="54"/>
-        <Button x:Name="btnAgregarJugador" Content="Agregar Jugador" HorizontalAlignment="Left" Margin="253,347,0,0" VerticalAlignment="Top" Width="143" Click="btnAgregarJugador_Click"/>
+        <Button x:Name="btnAgregarJugador" Content="Agregar Jugador" HorizontalAlignment="Left" Margin="272,335,0,0" VerticalAlignment="Top" Width="97" Click="btnAgregarJugador_Click"/>
         <Label Content="Nombre Jugador" HorizontalAlignment="Left" Margin="264,67,0,0" VerticalAlignment="Top"/>
         <Label Content="Apellido Paterno" HorizontalAlignment="Left" Margin="268,141,0,0" VerticalAlignment="Top"/>
         <Label Content="Apellido Materno" HorizontalAlignment="Left" Margin="263,204,0,0" VerticalAlignment="Top"/>
@@ -41,6 +47,7 @@
             </Separator.RenderTransform>
         </Separator>
         <Label Content="Nombre del Equipo" HorizontalAlignment="Left" Margin="484,49,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnEliminaEquipo" Content="Eliminar" HorizontalAlignment="Left" Margin="68,137,0,0" VerticalAlignment="Top" Width="75" IsEnabled="False" Click="btnEliminaEquipo_Click"/>
 
     </Grid>
 </Window>

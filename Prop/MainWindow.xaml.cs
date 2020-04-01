@@ -43,5 +43,13 @@ namespace Prop
             equipos.Show();
             this.Close();
         }
+
+        private void mni_jornadas_Click(object sender, RoutedEventArgs e)
+        {
+            MainJornadas jornadas = new MainJornadas();
+            jornadas.iIdTorneo = this.iIdTorneo;
+            jornadas.Show();
+            this.Close();
+        }
     }
 }

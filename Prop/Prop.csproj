@@ -98,6 +98,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MainJornadas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainJuegos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainTorneo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -115,6 +123,12 @@
     </Compile>
     <Compile Include="MainEquipos.xaml.cs">
       <DependentUpon>MainEquipos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainJornadas.xaml.cs">
+      <DependentUpon>MainJornadas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainJuegos.xaml.cs">
+      <DependentUpon>MainJuegos.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainTorneo.xaml.cs">
       <DependentUpon>MainTorneo.xaml</DependentUpon>
