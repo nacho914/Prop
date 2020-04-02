@@ -11,6 +11,7 @@
             <MenuItem Header="Equipos" Height="30" Width="162" HorizontalAlignment="Center">
                 <MenuItem x:Name="mni_equipos" Header="Modificar equipos" HorizontalAlignment="Center" Height="30" Width="201" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="0,0,-39,0" Click="MenuItem_Click"/>
                 <MenuItem x:Name="mni_jornadas" Header="Jornadas" HorizontalAlignment="Center" Height="30" Width="201" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="0,0,-39,0" Click="mni_jornadas_Click"/>
+                <MenuItem x:Name="mni_juegos" Header="Juegos" HorizontalAlignment="Center" Height="30" Width="201" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="0,0,-39,0" Click="mni_juegos_Click"/>
             </MenuItem>
         </Menu>
         <Label x:Name="lblNombreTorneo" Content="Label" HorizontalAlignment="Left" Margin="239,90,0,0" VerticalAlignment="Top" Width="262"/>

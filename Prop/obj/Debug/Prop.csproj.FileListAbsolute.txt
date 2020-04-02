@@ -82,6 +82,7 @@ C:\Users\uno\Desktop\Proyectos\Prop\Prop\bin\Debug\System.Data.SQLite.dll.config
 C:\Users\uno\Desktop\Proyectos\Prop\Prop\obj\Debug\addTorneos.g.cs
 C:\Users\uno\Desktop\Proyectos\Prop\Prop\obj\Debug\MainEquipos.g.cs
 C:\Users\uno\Desktop\Proyectos\Prop\Prop\obj\Debug\MainJornadas.g.cs
+C:\Users\uno\Desktop\Proyectos\Prop\Prop\obj\Debug\MainJuegos.g.cs
 C:\Users\uno\Desktop\Proyectos\Prop\Prop\obj\Debug\MainTorneo.g.cs
 C:\Users\uno\Desktop\Proyectos\Prop\Prop\obj\Debug\MainWindow.g.cs
 C:\Users\uno\Desktop\Proyectos\Prop\Prop\obj\Debug\App.g.cs
@@ -91,6 +92,7 @@ C:\Users\uno\Desktop\Proyectos\Prop\Prop\obj\Debug\Prop_MarkupCompile.lref
 C:\Users\uno\Desktop\Proyectos\Prop\Prop\obj\Debug\addTorneos.baml
 C:\Users\uno\Desktop\Proyectos\Prop\Prop\obj\Debug\MainEquipos.baml
 C:\Users\uno\Desktop\Proyectos\Prop\Prop\obj\Debug\MainJornadas.baml
+C:\Users\uno\Desktop\Proyectos\Prop\Prop\obj\Debug\MainJuegos.baml
 C:\Users\uno\Desktop\Proyectos\Prop\Prop\obj\Debug\MainTorneo.baml
 C:\Users\uno\Desktop\Proyectos\Prop\Prop\obj\Debug\MainWindow.baml
 C:\Users\uno\Desktop\Proyectos\Prop\Prop\obj\Debug\Prop.g.resources

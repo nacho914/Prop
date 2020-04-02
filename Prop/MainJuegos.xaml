@@ -5,8 +5,44 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Prop"
         mc:Ignorable="d"
-        Title="MainJuegos" Height="450" Width="800">
+        Title="MainJuegos" Height="450" Width="800" Loaded="Window_Loaded">
     <Grid>
-        
+        <ListView x:Name="lvLocales" HorizontalAlignment="Left" Height="275" Margin="10,115,0,0" VerticalAlignment="Top" Width="275">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="#" DisplayMemberBinding="{Binding numero}" Width="25"/>
+                    <GridViewColumn Header="Nombres" DisplayMemberBinding="{Binding nombre}" Width="70"/>
+                    <GridViewColumn Header="Apellidos" DisplayMemberBinding="{Binding apellidos}" Width="70"/>
+                    <GridViewColumn Header="Goles" Width="40">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBox Width="25" Text="{Binding goles}" TextAlignment="Center"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn Header="R" Width="30">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBox Width="18" Text="{Binding rojas}" TextAlignment="Center"  />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn Header="A" Width="30">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBox Width="18" Text="{Binding amarillas}" TextAlignment="Center" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Label Name="lbljornadas" Content="Jornada" HorizontalAlignment="Left" Margin="370,8,0,0" VerticalAlignment="Top" Width="75"/>
+        <ComboBox Name="cmbjornadas" HorizontalAlignment="Left" Margin="345,39,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="lblPartido" Content="Partido" HorizontalAlignment="Left" Margin="375,74,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cmbPartidos" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="290,115,0,0" VerticalAlignment="Top" Width="215"/>
+
     </Grid>
 </Window>

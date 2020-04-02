@@ -51,5 +51,14 @@ namespace Prop
             jornadas.Show();
             this.Close();
         }
+
+        private void mni_juegos_Click(object sender, RoutedEventArgs e)
+        {
+
+            MainJuegos juegos = new MainJuegos();
+            juegos.iIdTorneo = this.iIdTorneo;
+            juegos.Show();
+            this.Close();
+        }
     }
 }
