@@ -5,12 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Prop"
         mc:Ignorable="d"
-        Title="Jornadas" Height="450" Width="800" ResizeMode="NoResize" Loaded="Window_Loaded">
+        Title="Jornadas" Height="450" Width="800" ResizeMode="NoResize" Loaded="Window_Loaded" Icon="imagenes/balon.png" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Button x:Name="btn_Jornadas" Content="Generar Jornadas" HorizontalAlignment="Left" Margin="555,30,0,0" VerticalAlignment="Top" Width="124" Click="btn_Jornadas_Click"/>
-        <Label x:Name="lbl_principal" Content="Favor de generar las jornadas" HorizontalAlignment="Left" Margin="312,30,0,0" VerticalAlignment="Top"/>
-        <ComboBox Name="cmb_jornadas" HorizontalAlignment="Left" Margin="48,64,0,0" VerticalAlignment="Top" Width="180" SelectionChanged="cmb_jornadas_SelectionChanged"/>
-        <ListView Name="lvJornadasPrincipal" HorizontalAlignment="Left" Height="225" Margin="48,133,0,0" VerticalAlignment="Top" Width="680">
+        <Label x:Name="lbl_principal" Content="Jornadas Completas" HorizontalAlignment="Left" Margin="316,24,0,0" VerticalAlignment="Top" FontSize="48" FontFamily="Tw Cen MT Condensed Extra Bold"/>
+        <ComboBox Name="cmb_jornadas" HorizontalAlignment="Left" Margin="16,46,0,0" VerticalAlignment="Top" Width="180" SelectionChanged="cmb_jornadas_SelectionChanged"/>
+        <ListView Name="lvJornadasPrincipal" HorizontalAlignment="Left" Height="225" Margin="12,111,0,0" VerticalAlignment="Top" Width="680">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Equipo Local" Width="200">
@@ -20,7 +19,7 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    
+
                     <GridViewColumn Header="Marcador Local" Width="110">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
@@ -52,10 +51,12 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    
+
                 </GridView>
             </ListView.View>
         </ListView>
+        <Image HorizontalAlignment="Left" Height="60" Margin="705,345,0,0" VerticalAlignment="Top" Width="60" Source="imagenes/atras.png" MouseDown="Image_MouseDown"/>
+        <Image HorizontalAlignment="Left" Height="75" Margin="705,24,0,0" VerticalAlignment="Top" Width="79" Source="imagenes/sombra2.png"/>
 
     </Grid>
 </Window>

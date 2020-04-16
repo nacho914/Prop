@@ -21,17 +21,15 @@ namespace Prop
     /// </summary>
     public partial class MainJornadas : Window
     {
-        public int iIdTorneo;
-        public List <equipos> equipo;
-        public List<Partidos> Partido;
+        public int iIdTorneo;        
+        
         public List<lvJornadas> listJornadas;
         int iCargo = 0;
 
         public MainJornadas()
         {
-            InitializeComponent();
-            equipo = new List<equipos>();
-            Partido = new List<Partidos>();
+            InitializeComponent();            
+            
             listJornadas = new List<lvJornadas>();            
         }
 
@@ -40,18 +38,7 @@ namespace Prop
         {
             //Si las jornadas aun no se han generado, se tienen que realizar.
 
-            if(!VerificarJornadasGeneradas())
-            {                
-                obtenerEquipos();
-
-                if (!VerificarEquiposPares())
-                    generarJornadasImpares();
-                else
-                    generarJornadasPares();
-
-                guardarJornadas();
-                marcarJornadasTorneo();
-            }
+            
             llenarComboJornadas();
             cargarJornada();
             iCargo = 1;
@@ -86,36 +73,6 @@ namespace Prop
         }
 
 
-        public bool VerificarEquiposPares()
-        {
-            bool bRegresar = false;
-            int iTotal = 0;
-
-            using (var ctx = GetInstance())
-            {
-                var query = string.Format("select count(*) as total from Equipos WHERE idTorneo = {0}", iIdTorneo);
-
-                using (var command = new SQLiteCommand(query, ctx))
-                {
-                    using (var reader = command.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            iTotal = Int32.Parse(reader["total"].ToString());
-
-                            if ((iTotal % 2) == 0 && iTotal != 0)
-                            {
-                                bRegresar = true;
-                            }
-                            
-                        }
-                    }
-                }
-            }
-
-            return bRegresar;
-        }
-
         public static SQLiteConnection GetInstance()
         {
             var db = new SQLiteConnection(
@@ -134,166 +91,9 @@ namespace Prop
 
 
 
-        public void obtenerEquipos()
-        {
-            int iContador = 0;
-            using (var ctx = GetInstance())
-            {
-                var query = string.Format("select nombre from Equipos where idtorneo = {0} order by id", iIdTorneo);
 
-                using (var command = new SQLiteCommand(query, ctx))
-                {
-                    using (var reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            equipo.Add(new equipos { nombre = reader["nombre"].ToString(), iEquipo = iContador});
-                            iContador++;
-                        }                            
-                                                    
-                    }
-                }
-            }
 
-        }
-
-        public void generarJornadasPares()
-        {
-            int iRondas = equipo.Count() / 2;
-            int iJornadas = equipo.Count() - 1;
-
-            int iJuegosTotales = iRondas * iJornadas;
-            int iJor = 1;
-            int iJue = 1;
-
-            for (int i = 1; i <= iJuegosTotales; i++)
-            {
-                Partido.Add((new Partidos { jornada = iJor, local = iJue, visitante = 0 }));
-                iJue++;
-                if (iJue > iJornadas)
-                    iJue = 1;
-                if (i % iRondas == 0)
-                    iJor++;
-            }
-
-            int iAyudante = 0;
-
-            foreach (Partidos x in Partido)
-            {
-                if (x.jornada != iAyudante)
-                {
-                    if (x.jornada % 2 == 0)
-                    {
-                        x.visitante = x.local;
-                        x.local = equipo.Count();
-                    }
-                    else
-                    {
-                        x.visitante = equipo.Count();
-                    }
-                    iAyudante = x.jornada;
-                }
-            }
-
-            int iMax = iJornadas;
-            foreach (Partidos x in Partido)
-            {
-                if (x.local == 0 || x.visitante == 0)
-                {
-                    x.visitante = iMax;
-                    iMax--;
-
-                    if (iMax == 0)
-                        iMax = iJornadas;
-                }
-            }
-        }
-
-        public void generarJornadasImpares()
-        {
-            int iRondas = (equipo.Count()*(equipo.Count() - 1)) / 2;
-            int iJornadas = equipo.Count() - 1;
-
-            int iJuegosTotales = iRondas * iJornadas;
-            int iJor = 1;
-            int iJue = 1;
-
-            for (int i = 1; i <= iJuegosTotales; i++)
-            {
-                Partido.Add((new Partidos { jornada = iJor, local = iJue, visitante = -1 }));
-                iJue++;
-                if (iJue > (iJornadas+1))
-                    iJue = 1;
-                if (i % (iRondas-1) == 0)
-                    iJor++;
-            }
-
-            int iAyudante = 0;
-
-            foreach (Partidos x in Partido)
-            {
-                if (x.jornada != iAyudante)
-                {
-                    if (x.jornada % 2 == 0)
-                    {
-                        x.visitante = x.local;
-                        x.local = 0;
-                    }
-                    else
-                    {
-                        x.visitante = 0;
-                    }
-                    iAyudante = x.jornada;
-                }
-            }
-
-            int iMax = equipo.Count(); ;
-            foreach (Partidos x in Partido)
-            {
-                if (x.local == -1 || x.visitante == -1)
-                {
-                    x.visitante = iMax;
-                    iMax--;
-
-                    if (iMax == 0)
-                        iMax = iJornadas;
-                }
-            }
-        }
-
-        public void guardarJornadas()
-        {
-            using (var ctx = GetInstance())
-            {
-
-                foreach (Partidos par in Partido)
-                {
-                    string query = string.Format("INSERT INTO jornadas(numerojornada,idlocal,idvisitante,idtorneo) VALUES({0},{1},{2},{3})", par.jornada, par.local, par.visitante, iIdTorneo);
-
-                    using (var command = new SQLiteCommand(query, ctx))
-                    {
-
-                        command.ExecuteNonQuery();
-
-                    }
-                }
-            }
-        }
-
-        public void marcarJornadasTorneo()
-        {
-            using (var ctx = GetInstance())
-            {
-                string query = string.Format("UPDATE torneos SET jornadas = 1 WHERE id = {0}", iIdTorneo);
-
-                using (var command = new SQLiteCommand(query, ctx))
-                {
-                    command.ExecuteNonQuery();                 
-                }
-            }
-
-        }
-
+      
 
         private void llenarComboJornadas()
         {
@@ -327,12 +127,12 @@ namespace Prop
         {
 
             int iJornada = cmb_jornadas.SelectedIndex+1;
-            string local="", visitante="";
+            string local="", visitante="", sTexto="";
 
             using (var ctx = GetInstance())
             {
 
-                var query = string.Format("SELECT idlocal,idvisitante FROM jornadas WHERE idtorneo ={0} AND NumeroJornada = {1}", this.iIdTorneo, iJornada);
+                var query = string.Format("SELECT a.idlocal as idlocal ,a.idvisitante as idvisitante, COALESCE((SELECT sum(goles) FROM DetallesGoles WHERE idequipo = a.idlocal AND idjornada = a.id), 0) AS Goleslocal, COALESCE((SELECT sum(goles) FROM DetallesGoles WHERE idequipo = a.idvisitante AND idjornada = a.id),0) AS Golesvisita, guardado FROM jornadas as a WHERE idtorneo ={0} AND NumeroJornada = {1}", this.iIdTorneo, iJornada);
 
                 using (var command = new SQLiteCommand(query, ctx))
                 {
@@ -342,7 +142,13 @@ namespace Prop
                         {
                             local = obtenerNombreEquipo(Int32.Parse(reader["idlocal"].ToString()));
                             visitante = obtenerNombreEquipo(Int32.Parse(reader["idvisitante"].ToString()));
-                            listJornadas.Add(new lvJornadas() { local = local, visitante = visitante, marlocal = "-", marvisitante = "-",vs = "VS" });
+
+                            if (Int32.Parse(reader["guardado"].ToString()) == 1)
+                                sTexto = "VS";
+                            else
+                                sTexto = "-";
+
+                            listJornadas.Add(new lvJornadas() { local = local, visitante = visitante, marlocal = reader["Goleslocal"].ToString(), marvisitante = reader["Golesvisita"].ToString(), vs = sTexto });
 
                         }   
                     }
@@ -387,21 +193,14 @@ namespace Prop
                 cargarJornada();
             }
         }
-    }
 
-
-
-    public class equipos
-    {
-        public string nombre { get; set; }
-        public int iEquipo { get; set; }
-    }
-
-    public class Partidos
-    {
-        public int jornada { get; set; }
-        public int local { get; set; }
-        public int visitante { get; set;}
+        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            MainWindow main = new MainWindow();
+            main.iIdTorneo = this.iIdTorneo;
+            main.Show();
+            this.Close();
+        }
     }
 
     public class lvJornadas

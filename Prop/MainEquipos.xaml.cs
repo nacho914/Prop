@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Data.SQLite;
+using System.Text.RegularExpressions;
 
 namespace Prop
 {
@@ -23,13 +24,19 @@ namespace Prop
         public int iIdTorneo;
         public string sNombreTorneo;
         public List<Jugadores> items;
+        private static readonly Regex _regex = new Regex("[^0-9]+"); //regex that matches disallowed text
+        bool bJornadasGeneradas = false;
 
+        public List<equipos> equipo;
+        public List<Partidos> Partido;
 
         public MainEquipos()
         {
             InitializeComponent();
 
+            equipo = new List<equipos>();
             items = new List<Jugadores>();
+            Partido = new List<Partidos>();
 
         }
 
@@ -183,6 +190,24 @@ namespace Prop
             return iIdEquipo;
         }
 
+        public int ActualizaNumeros()
+        {
+            int iIdEquipo = 0;
+            int iNumeroEquipo = 1;
+
+
+            foreach (KeyValuePair<string, string> dic in cmbEquipos.ItemsSource)
+            {
+                if(int.Parse(dic.Key) !=0)
+                { 
+                    actualizarNumeroEquipo(int.Parse(dic.Key), iNumeroEquipo);
+                    iNumeroEquipo++;
+                }
+            }
+
+            return iIdEquipo;
+        }
+
         public void EliminarJugadores(int iIdEquipo)
         {
             using (var ctx = GetInstance())
@@ -298,7 +323,16 @@ namespace Prop
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             llenarCombo();
-            //llenarGrid();
+            bJornadasGeneradas = VerificarJornadasGeneradas();
+
+            if (bJornadasGeneradas)
+            { 
+                btnEliminaEquipo.IsEnabled = false;
+                btnCreaEquipo.IsEnabled = false;
+                btnGenerarJornadas.Visibility = Visibility.Hidden;
+            }
+            else
+                btnGenerarJornadas.Visibility = Visibility.Visible;
         }
 
         private void btnAgregarJugador_Click(object sender, RoutedEventArgs e)
@@ -341,18 +375,40 @@ namespace Prop
                 items.Clear();
 
 
-                if (idEquipo == 0)
+                if (bJornadasGeneradas)
                 {
-                    btnCreaEquipo.Content = "Crea al equipo";
-                    txtNombreEquipo.Text = "";
                     btnEliminaEquipo.IsEnabled = false;
+                    if (idEquipo == 0)
+                    {
+                        btnCreaEquipo.Content = "Crea al equipo";
+                        btnCreaEquipo.IsEnabled = false;
+                        txtNombreEquipo.Text = "";
+
+                    }
+                    else
+                    {
+                        btnCreaEquipo.Content = "Modifica el equipo";
+                        btnCreaEquipo.IsEnabled = true;
+                        btnEliminaEquipo.IsEnabled = false;
+                        txtNombreEquipo.Text = listEquipo.Value;
+                        cargaEquipo(Int32.Parse(listEquipo.Key));
+                    }
                 }
                 else
                 {
-                    btnCreaEquipo.Content = "Modifica el equipo";
-                    btnEliminaEquipo.IsEnabled = true;
-                    txtNombreEquipo.Text = listEquipo.Value;
-                    cargaEquipo(Int32.Parse(listEquipo.Key));
+                    if (idEquipo == 0)
+                    {
+                        btnCreaEquipo.Content = "Crea al equipo";
+                        txtNombreEquipo.Text = "";
+                        
+                    }
+                    else
+                    {
+                        btnCreaEquipo.Content = "Modifica el equipo";
+                        btnEliminaEquipo.IsEnabled = true;
+                        txtNombreEquipo.Text = listEquipo.Value;
+                        cargaEquipo(Int32.Parse(listEquipo.Key));
+                    }
                 }
             }
             catch
@@ -385,8 +441,9 @@ namespace Prop
             int idEquipo = obtenerIdEquipo();
             EliminarEquipo(idEquipo);
             EliminarJugadores(idEquipo);
-
             llenarCombo();
+            ActualizaNumeros();
+            
 
             MessageBox.Show("El equipo ha sido eliminado");
         }
@@ -397,6 +454,25 @@ namespace Prop
             using (var ctx = GetInstance())
             {
                 string query = string.Format("UPDATE Equipos SET nombre = '{0}' WHERE id = {1} AND idTorneo = {2}", txtNombreEquipo.Text, idEquipo, iIdTorneo);
+
+                using (var command = new SQLiteCommand(query, ctx))
+                {
+
+                    if (command.ExecuteNonQuery() != 1)
+                    {
+                        MessageBox.Show("Algo salio mal al modificar el torneo");
+                    }
+                }
+
+            }
+        }
+
+        private void actualizarNumeroEquipo(int idEquipo,int iNumeroEquipo)
+        {
+
+            using (var ctx = GetInstance())
+            {
+                string query = string.Format("UPDATE Equipos SET numeroequipo = {0} WHERE id = {1} AND idTorneo = {2}", iNumeroEquipo, idEquipo, iIdTorneo);
 
                 using (var command = new SQLiteCommand(query, ctx))
                 {
@@ -435,6 +511,266 @@ namespace Prop
             return iMaxId+1;
         }
 
+        private void txtNumero_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !IsTextAllowed(e.Text);
+        }
+        
+        private static bool IsTextAllowed(string text)
+        {
+            return !_regex.IsMatch(text);
+        }
+
+        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            MainWindow main = new MainWindow();
+            main.iIdTorneo = this.iIdTorneo;
+            main.Show();
+            this.Close();
+        }
+
+        public bool VerificarJornadasGeneradas()
+        {
+            bool bRegresar = false;
+
+            using (var ctx = GetInstance())
+            {
+                var query = string.Format("SELECT jornadas FROM torneos WHERE id = {0}", iIdTorneo);
+
+                using (var command = new SQLiteCommand(query, ctx))
+                {
+                    using (var reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            if (Int32.Parse(reader["jornadas"].ToString()) != 0)
+                            {
+                                bRegresar = true;
+                            }
+                        }
+                    }
+                }
+            }
+
+            return bRegresar;
+        }
+
+        private void btnGenerarJornadas_Click(object sender, RoutedEventArgs e)
+        {
+            if (!VerificarJornadasGeneradas())
+            {
+                MessageBoxResult result = MessageBox.Show("¿Estas seguro que deseas generar las jornadas? Después  de esto no podrás eliminar ni generar nuevos equipos",
+                                          "Confirmation",
+                                          MessageBoxButton.YesNo,
+                                          MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    obtenerEquipos();
+
+                    if (!VerificarEquiposPares())
+                        generarJornadasImpares();
+                    else
+                        generarJornadasPares();
+
+                    guardarJornadas();
+                    marcarJornadasTorneo();
+                }
+
+               
+            }
+            
+        }
+
+        public void obtenerEquipos()
+        {
+            int iContador = 0;
+            using (var ctx = GetInstance())
+            {
+                var query = string.Format("select nombre from Equipos where idtorneo = {0} order by id", iIdTorneo);
+
+                using (var command = new SQLiteCommand(query, ctx))
+                {
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            equipo.Add(new equipos { nombre = reader["nombre"].ToString(), iEquipo = iContador });
+                            iContador++;
+                        }
+
+                    }
+                }
+            }
+
+        }
+
+        public void generarJornadasPares()
+        {
+            int iRondas = equipo.Count() / 2;
+            int iJornadas = equipo.Count() - 1;
+
+            int iJuegosTotales = iRondas * iJornadas;
+            int iJor = 1;
+            int iJue = 1;
+
+            for (int i = 1; i <= iJuegosTotales; i++)
+            {
+                Partido.Add((new Partidos { jornada = iJor, local = iJue, visitante = 0 }));
+                iJue++;
+                if (iJue > iJornadas)
+                    iJue = 1;
+                if (i % iRondas == 0)
+                    iJor++;
+            }
+
+            int iAyudante = 0;
+
+            foreach (Partidos x in Partido)
+            {
+                if (x.jornada != iAyudante)
+                {
+                    if (x.jornada % 2 == 0)
+                    {
+                        x.visitante = x.local;
+                        x.local = equipo.Count();
+                    }
+                    else
+                    {
+                        x.visitante = equipo.Count();
+                    }
+                    iAyudante = x.jornada;
+                }
+            }
+
+            int iMax = iJornadas;
+            foreach (Partidos x in Partido)
+            {
+                if (x.local == 0 || x.visitante == 0)
+                {
+                    x.visitante = iMax;
+                    iMax--;
+
+                    if (iMax == 0)
+                        iMax = iJornadas;
+                }
+            }
+        }
+
+        public void generarJornadasImpares()
+        {
+            int iRondas = ((equipo.Count() + 1) / 2);//(equipo.Count() * (equipo.Count() - 1)) / 2;
+            int iJornadas = equipo.Count();
+
+            int iJuegosTotales = iRondas * iJornadas;
+            int iJor = 1;
+            int iJue = 1;
+
+            for (int i = 1; i <= iJuegosTotales; i++)
+            {
+                Partido.Add((new Partidos { jornada = iJor, local = iJue, visitante = -1 }));
+                iJue++;
+                if (iJue > (iJornadas))
+                    iJue = 1;
+                if (i % (iRondas) == 0)
+                    iJor++;
+            }
+
+            int iAyudante = 0;
+
+            foreach (Partidos x in Partido)
+            {
+                if (x.jornada != iAyudante)
+                {
+                    if (x.jornada % 2 == 0)
+                    {
+                        x.visitante = x.local;
+                        x.local = 0;
+                    }
+                    else
+                    {
+                        x.visitante = 0;
+                    }
+                    iAyudante = x.jornada;
+                }
+            }
+
+            int iMax = equipo.Count(); ;
+            foreach (Partidos x in Partido)
+            {
+                if (x.local == -1 || x.visitante == -1)
+                {
+                    x.visitante = iMax;
+                    iMax--;
+
+                    if (iMax == 0)
+                        iMax = iJornadas;
+                }
+            }
+        }
+
+        public void guardarJornadas()
+        {
+            using (var ctx = GetInstance())
+            {
+
+                foreach (Partidos par in Partido)
+                {
+                    string query = string.Format("INSERT INTO jornadas(numerojornada,idlocal,idvisitante,idtorneo) VALUES({0},{1},{2},{3})", par.jornada, par.local, par.visitante, iIdTorneo);
+
+                    using (var command = new SQLiteCommand(query, ctx))
+                    {
+
+                        command.ExecuteNonQuery();
+
+                    }
+                }
+            }
+        }
+
+        public void marcarJornadasTorneo()
+        {
+            using (var ctx = GetInstance())
+            {
+                string query = string.Format("UPDATE torneos SET jornadas = 1 WHERE id = {0}", iIdTorneo);
+
+                using (var command = new SQLiteCommand(query, ctx))
+                {
+                    command.ExecuteNonQuery();
+                }
+            }
+
+        }
+
+        public bool VerificarEquiposPares()
+        {
+            bool bRegresar = false;
+            int iTotal = 0;
+
+            using (var ctx = GetInstance())
+            {
+                var query = string.Format("select count(*) as total from Equipos WHERE idTorneo = {0}", iIdTorneo);
+
+                using (var command = new SQLiteCommand(query, ctx))
+                {
+                    using (var reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            iTotal = Int32.Parse(reader["total"].ToString());
+
+                            if ((iTotal % 2) == 0 && iTotal != 0)
+                            {
+                                bRegresar = true;
+                            }
+
+                        }
+                    }
+                }
+            }
+
+            return bRegresar;
+        }
 
     }
 
@@ -446,5 +782,18 @@ namespace Prop
         public int numero { get; set; }
         public int id { get; set; }
         public bool eliminado { get; set; }
+    }
+
+    public class equipos
+    {
+        public string nombre { get; set; }
+        public int iEquipo { get; set; }
+    }
+
+    public class Partidos
+    {
+        public int jornada { get; set; }
+        public int local { get; set; }
+        public int visitante { get; set; }
     }
 }

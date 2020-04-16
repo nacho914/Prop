@@ -102,3 +102,4 @@ C:\Users\uno\Desktop\Proyectos\Prop\Prop\obj\Debug\Prop.csproj.CoreCompileInputs
 C:\Users\uno\Desktop\Proyectos\Prop\Prop\obj\Debug\Prop.csproj.CopyComplete
 C:\Users\uno\Desktop\Proyectos\Prop\Prop\obj\Debug\Prop.exe
 C:\Users\uno\Desktop\Proyectos\Prop\Prop\obj\Debug\Prop.pdb
+C:\Users\uno\Desktop\Proyectos\Prop\Prop\obj\Debug\Prop.csprojAssemblyReference.cache

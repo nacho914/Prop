@@ -76,6 +76,9 @@ namespace Prop
             else
             {
                 EliminarTorneo(Int32.Parse(value));
+                EliminarJornadas(Int32.Parse(value));
+                EliminarEquipos(Int32.Parse(value));
+                EliminarGoles(Int32.Parse(value));
             }
         }
 
@@ -161,6 +164,46 @@ namespace Prop
                 }
             }
 
+        }
+
+        public void EliminarJornadas(int iTorneo)
+        {
+            using (var ctx = GetInstance())
+            {
+                string query = string.Format("DELETE FROM jornadas WHERE idtorneo = {0}", iTorneo);
+                using (var command = new SQLiteCommand(query, ctx))
+                {
+                    command.ExecuteNonQuery();
+
+                }
+            }
+        }
+
+        public void EliminarEquipos(int iTorneo)
+        {
+            using (var ctx = GetInstance())
+            {
+                string query = string.Format("DELETE FROM Equipos WHERE idtorneo = {0}", iTorneo);
+                using (var command = new SQLiteCommand(query, ctx))
+                {
+                    command.ExecuteNonQuery();
+
+                }
+            }
+        }
+
+
+        public void EliminarGoles(int iTorneo)
+        {
+            using (var ctx = GetInstance())
+            {
+                string query = string.Format("DELETE FROM DetallesGoles WHERE idtorneo = {0}", iTorneo);
+                using (var command = new SQLiteCommand(query, ctx))
+                {
+                    command.ExecuteNonQuery();
+
+                }
+            }
         }
     }
 }
