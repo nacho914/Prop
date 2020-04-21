@@ -5,9 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Prop"
         mc:Ignorable="d"
-        Title="MainWindow" Height="706" Width="1063" ResizeMode="NoResize" Loaded="Window_Loaded" Icon="imagenes/balon.png" WindowStartupLocation="CenterScreen">
-    <Grid Margin="0,0,2,-21">
-        <Menu HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="1055">
+        Title="MainWindow" Height="756" Width="1063" ResizeMode="NoResize" Loaded="Window_Loaded" Icon="imagenes/balon.png" WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+            <GradientStop Color="Black" Offset="1"/>
+            <GradientStop Color="#FFD39B9B"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    <Grid Margin="0,0,2,-19">
+        <Menu HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="1055" Background="#FF9B8E8E">
 
             <MenuItem Name="mModifica"  Header="Modificar equipos" Height="30" Width="120" HorizontalAlignment="Center" Click="mModifica_Click">
             </MenuItem>
@@ -15,10 +21,10 @@
             </MenuItem>
             <MenuItem Name="mJuegos" Header="Juegos" Height="30" Width="70" HorizontalAlignment="Center" Click="mJuegos_Click">
             </MenuItem>
-            
+
         </Menu>
-        <Label x:Name="lblNombreTorneo" Content="Label" HorizontalAlignment="Left" Margin="239,30,0,0" VerticalAlignment="Top" Width="680" FontFamily="Tw Cen MT Condensed Extra Bold" FontSize="48" FontWeight="Bold"/>
-        <ListView x:Name="lvTabla" HorizontalAlignment="Left" Height="484" Margin="22,171,0,0" VerticalAlignment="Top" Width="630">
+        <Label x:Name="lblNombreTorneo" Content="Label" HorizontalAlignment="Left" Margin="189,52,0,0" VerticalAlignment="Top" Width="837" FontFamily="Tw Cen MT Condensed Extra Bold" FontSize="48" FontWeight="Bold"/>
+        <ListView x:Name="lvTabla" HorizontalAlignment="Left" Height="484" Margin="22,193,0,0" VerticalAlignment="Top" Width="630" Background="#FFEEC1C1">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Lugar" Width="40">
@@ -94,7 +100,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <ListView x:Name="lvGoleadores" HorizontalAlignment="Left" Height="340" Margin="685,315,0,0" VerticalAlignment="Top" Width="340">
+        <ListView x:Name="lvGoleadores" HorizontalAlignment="Left" Height="340" Margin="685,329,0,0" VerticalAlignment="Top" Width="340" Background="#FFDCBBBB">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="" Width="0" DisplayMemberBinding="{Binding idJugador}" />
@@ -122,11 +128,13 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Label Content="Estadísticas" HorizontalAlignment="Left" Margin="82,108,0,0" VerticalAlignment="Top" FontSize="48" FontFamily="Tw Cen MT Condensed Extra Bold"/>
-        <Label Content="Goleadores" HorizontalAlignment="Left" Margin="747,226,0,0" VerticalAlignment="Top" FontFamily="Tw Cen MT Condensed Extra Bold" FontSize="48"/>
-        <Image HorizontalAlignment="Left" Height="62" Margin="682,240,0,0" VerticalAlignment="Top" Width="40" Source="imagenes/balon.png"/>
-        <Image HorizontalAlignment="Left" Height="42" Margin="29,120,0,0" VerticalAlignment="Top" Width="56" Source="imagenes/lugar.png"/>
-        <Image HorizontalAlignment="Left" Height="62" Margin="986,240,0,0" VerticalAlignment="Top" Width="40" Source="imagenes/balon.png"/>
-        <Image HorizontalAlignment="Left" Height="107" Margin="802,108,0,0" VerticalAlignment="Top" Width="138" Source="imagenes/balon.png"/>
+        <Label Content="Estadísticas" HorizontalAlignment="Left" Margin="80,130,0,0" VerticalAlignment="Top" FontSize="48" FontFamily="Tw Cen MT Condensed Extra Bold"/>
+        <Label Content="Goleadores" HorizontalAlignment="Left" Margin="747,262,0,0" VerticalAlignment="Top" FontFamily="Tw Cen MT Condensed Extra Bold" FontSize="48"/>
+        <Image HorizontalAlignment="Left" Height="62" Margin="682,276,0,0" VerticalAlignment="Top" Width="40" Source="imagenes/balon.png"/>
+        <Image HorizontalAlignment="Left" Height="42" Margin="31,144,0,0" VerticalAlignment="Top" Width="56" Source="imagenes/lugar.png"/>
+        <Image HorizontalAlignment="Left" Height="62" Margin="986,276,0,0" VerticalAlignment="Top" Width="40" Source="imagenes/balon.png"/>
+        <Image x:Name="imgLogo2" HorizontalAlignment="Left" Height="137" Margin="788,128,0,0" VerticalAlignment="Top" Width="143" Source="imagenes/balon.png"/>
+        <Image x:Name="imgLogo" HorizontalAlignment="Left" Height="100" Margin="53,36,0,0" VerticalAlignment="Top" Width="100"/>
+        <Button x:Name="btnExportarTabla" Content="Exportar" HorizontalAlignment="Left" Margin="577,684,0,0" VerticalAlignment="Top" Width="75" Click="btnExportarTabla_Click"/>
     </Grid>
 </Window>

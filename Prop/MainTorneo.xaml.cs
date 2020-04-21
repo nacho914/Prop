@@ -54,8 +54,7 @@ namespace Prop
             {
                 //MessageBox.Show(value);
                 MainWindow main = new MainWindow();
-                main.iIdTorneo = iIdTorneo;
-                main.sNombreTorneo = listTorneo.Value;
+                main.iIdTorneo = iIdTorneo;                
                 main.Show();
                 this.Close();
 

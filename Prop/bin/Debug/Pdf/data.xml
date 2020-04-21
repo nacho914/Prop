@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfRecords>
+  <Record>
+    <iLugar>1</iLugar>
+    <sEquipo>FAMSA FC</sEquipo>
+    <iJJ>1</iJJ>
+    <iJG>1</iJG>
+    <iJE>0</iJE>
+    <iJP>0</iJP>
+    <iGF>3</iGF>
+    <iGC>0</iGC>
+    <iDif>3</iDif>
+    <iPuntos>3</iPuntos>
+  </Record>
+  <Record>
+    <iLugar>2</iLugar>
+    <sEquipo>GALLAZOS</sEquipo>
+    <iJJ>1</iJJ>
+    <iJG>1</iJG>
+    <iJE>0</iJE>
+    <iJP>0</iJP>
+    <iGF>2</iGF>
+    <iGC>0</iGC>
+    <iDif>2</iDif>
+    <iPuntos>3</iPuntos>
+  </Record>
+  <Record>
+    <iLugar>3</iLugar>
+    <sEquipo>SANCHEZ CELIS</sEquipo>
+    <iJJ>1</iJJ>
+    <iJG>1</iJG>
+    <iJE>0</iJE>
+    <iJP>0</iJP>
+    <iGF>1</iGF>
+    <iGC>0</iGC>
+    <iDif>1</iDif>
+    <iPuntos>3</iPuntos>
+  </Record>
+  <Record>
+    <iLugar>4</iLugar>
+    <sEquipo>H y A</sEquipo>
+    <iJJ>1</iJJ>
+    <iJG>0</iJG>
+    <iJE>1</iJE>
+    <iJP>0</iJP>
+    <iGF>0</iGF>
+    <iGC>0</iGC>
+    <iDif>0</iDif>
+    <iPuntos>1</iPuntos>
+  </Record>
+  <Record>
+    <iLugar>5</iLugar>
+    <sEquipo>ARTESANIAS LOBO</sEquipo>
+    <iJJ>2</iJJ>
+    <iJG>0</iJG>
+    <iJE>1</iJE>
+    <iJP>1</iJP>
+    <iGF>0</iGF>
+    <iGC>2</iGC>
+    <iDif>-2</iDif>
+    <iPuntos>1</iPuntos>
+  </Record>
+  <Record>
+    <iLugar>6</iLugar>
+    <sEquipo>RODEO FRUIT BANORTE</sEquipo>
+    <iJJ>1</iJJ>
+    <iJG>0</iJG>
+    <iJE>0</iJE>
+    <iJP>1</iJP>
+    <iGF>0</iGF>
+    <iGC>1</iGC>
+    <iDif>-1</iDif>
+    <iPuntos>0</iPuntos>
+  </Record>
+  <Record>
+    <iLugar>7</iLugar>
+    <sEquipo>QUEFES</sEquipo>
+    <iJJ>1</iJJ>
+    <iJG>0</iJG>
+    <iJE>0</iJE>
+    <iJP>1</iJP>
+    <iGF>0</iGF>
+    <iGC>3</iGC>
+    <iDif>-3</iDif>
+    <iPuntos>0</iPuntos>
+  </Record>
+</ArrayOfRecords>

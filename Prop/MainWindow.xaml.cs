@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.SQLite;
+using System.IO;
 
 namespace Prop
 {
@@ -23,10 +24,11 @@ namespace Prop
     public partial class MainWindow : Window
     {
 
-        public int iIdTorneo;
-        public string sNombreTorneo;
+        public int iIdTorneo;       
         public List<TablaEquipos> itemsTabla;
         public List<goleadores> itemsGoleo;
+        public string sLogo;
+        public string sLogo2;
 
         public MainWindow()
         {
@@ -52,20 +54,88 @@ namespace Prop
         {
             var macAddr = (from nic in NetworkInterface.GetAllNetworkInterfaces() where nic.OperationalStatus == OperationalStatus.Up select nic.GetPhysicalAddress().ToString()).FirstOrDefault();
             //MessageBox.Show(macAddr);
-            if(macAddr.Equals("E4D53DBF3B20"))
-            { 
-                lblNombreTorneo.Content = string.Format("Bienvenido al torneo {0}", sNombreTorneo);
+           //if(macAddr.Equals("E4D53DBF3B20"))
+            {
+                //var rpt = new IListPdfReport().CreatePdfReport();
+                cargarDatosTorneo();
                 cargarTabla();
                 cargarGoleadores();
+                
             }
-            else
+            /*else
             {
 
+                MessageBox.Show("Este no es tu sistema, sal de aqui perro de la calle");
                 mModifica.IsEnabled = false;
                 mJuegos.IsEnabled = false;
                 mJornadas.IsEnabled = false;
-            }
+            }*/
             // MessageBox.Show(macAddr);
+        }
+
+
+        private void cargarDatosTorneo()
+        {
+            string sNombreTorneo="";
+            using (var ctx = GetInstance())
+            {
+                var query = string.Format("SELECT nombre,logotorneo,logotorneo2 FROM torneos WHERE id ={0}", iIdTorneo);
+
+                using (var command = new SQLiteCommand(query, ctx))
+                {
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+
+                            sNombreTorneo = reader["nombre"].ToString();
+                            sLogo = reader["logotorneo"].ToString();
+                            sLogo2 = reader["logotorneo2"].ToString();
+
+                        }
+                    }
+                }
+            }
+
+            lblNombreTorneo.Content = string.Format("Bienvenido al torneo {0}", sNombreTorneo);
+            cargarImagen(sLogo,1);
+            cargarImagen(sLogo2,2);
+
+        }
+        public void cargarImagen(string sImgBase64,int iTipo)
+        {            
+            string urlImg = "";
+
+            try
+            { 
+                byte[] binaryData = Convert.FromBase64String(sImgBase64);
+
+                BitmapImage bi = new BitmapImage();
+                bi.BeginInit();
+                bi.StreamSource = new MemoryStream(binaryData);
+                bi.EndInit();
+                
+
+                if (iTipo==1)
+                {                                         
+                    urlImg = System.IO.Path.GetTempPath() + "imglogo" + iIdTorneo + ".jpg";
+                    imgLogo.Source = bi;
+                }
+                else
+                {
+                    urlImg = System.IO.Path.GetTempPath() + "imglogo2" + iIdTorneo + ".jpg";
+                    imgLogo2.Source = bi;
+                }
+                                                
+                using (var fileStream = new FileStream(urlImg, FileMode.Create))
+                {
+                    BitmapEncoder encoder = new PngBitmapEncoder();
+                    encoder.Frames.Add(BitmapFrame.Create(bi));
+                    encoder.Save(fileStream);
+                }
+            }
+            catch
+            { }
         }
 
 
@@ -155,8 +225,7 @@ namespace Prop
         private void mModifica_Click(object sender, RoutedEventArgs e)
         {
             MainEquipos equipos = new MainEquipos();
-            equipos.iIdTorneo = this.iIdTorneo;
-            equipos.sNombreTorneo = this.sNombreTorneo;
+            equipos.iIdTorneo = this.iIdTorneo;            
             equipos.Show();
             this.Close();
         }
@@ -178,6 +247,11 @@ namespace Prop
             jornadas.iIdTorneo = this.iIdTorneo;
             jornadas.Show();
             this.Close();
+        }
+
+        private void btnExportarTabla_Click(object sender, RoutedEventArgs e)
+        {
+            var rpt = new IListPdfReport().CreatePdfReport(iIdTorneo,itemsTabla);
         }
     }
 
@@ -204,4 +278,6 @@ namespace Prop
         public string sEquipo { get; set; }
 
     }
+
+
 }
