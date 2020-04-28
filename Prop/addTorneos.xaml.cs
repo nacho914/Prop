@@ -27,7 +27,7 @@ namespace Prop
         public int iIdTorneo;
         public String sNombreTorneoAnterior;
         public System.Drawing.Image img;
-        public string imgloc, imgloc2;
+        public string imgloc, imgloc2,sBase1,sBase2;
 
 
         public addTorneos()
@@ -165,46 +165,53 @@ namespace Prop
         }
 
         public string imagen64(int iTipo)
-        {
-            String sBase64 = "";            
-            byte[] img = null;
+        {                        
             if(iTipo==1)
-                img = ImageToByte((BitmapImage)imgDrop.Source,1);
+                return ImageToByte((BitmapImage)imgDrop.Source,1);
             else
-                img = ImageToByte((BitmapImage)imgDrop2.Source,2);
-
-            sBase64 = Convert.ToBase64String(img);
-
-            return sBase64;
+                return ImageToByte((BitmapImage)imgDrop2.Source,2);
         }
 
 
-        public Byte[] ImageToByte(BitmapImage imageSource, int iTipo)
+        public string ImageToByte(BitmapImage imageSource, int iTipo)
         {
-            Stream stream = imageSource.StreamSource;
-            Byte[] buffer = null;
-            String sUsable = "";
+            try { 
+                Stream stream = imageSource.StreamSource;
+                Byte[] buffer = null;
+                String sUsable = "";
 
-            if (iTipo == 1)
-                sUsable = imgloc;
-            else
-                sUsable = imgloc2;
+                if (iTipo == 1)
+                    sUsable = imgloc;
+                else
+                    sUsable = imgloc2;
 
-            if (stream != null && stream.Length > 0)
-            {
-                using (BinaryReader br = new BinaryReader(stream))
+                if (stream != null && stream.Length > 0)
                 {
-                    buffer = br.ReadBytes((Int32)stream.Length);
+                    if (iTipo == 1)
+                        return sBase1;
+                    else
+                        return sBase2;                
+                }
+                else
+                {
+                    FileStream fs = new FileStream(sUsable, FileMode.Open, FileAccess.Read);
+                    BinaryReader br = new BinaryReader(fs);
+                    buffer = br.ReadBytes((int)fs.Length);
+
+                    return Convert.ToBase64String(buffer);
                 }
             }
-            else
+            catch
             {
-                FileStream fs = new FileStream(sUsable, FileMode.Open, FileAccess.Read);
-                BinaryReader br = new BinaryReader(fs);
-                buffer = br.ReadBytes((int)fs.Length);
+                return "";
             }
+        }
 
-            return buffer;
+        private void btnRegresar_Click(object sender, RoutedEventArgs e)
+        {
+            MainTorneo main = new MainTorneo();                       
+            main.Show();
+            this.Close();
         }
 
         private void btnImagenTorneo_Click(object sender, RoutedEventArgs e)
@@ -245,6 +252,8 @@ namespace Prop
                 }
 
             }
+            sBase1 = sLogo;
+            sBase2 = sLogo2;
             cargarImagen(sLogo,1);
             cargarImagen(sLogo2, 2);
         }

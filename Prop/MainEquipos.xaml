@@ -6,6 +6,12 @@
         xmlns:local="clr-namespace:Prop"
         mc:Ignorable="d"
         Title="Equipos" Height="450" Width="913" ResizeMode="NoResize" Loaded="Window_Loaded" Icon="imagenes/balon.png" WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+            <GradientStop Color="#FF4B4E6D" Offset="1"/>
+            <GradientStop Color="#FF84DCC6" Offset="0.007"/>
+        </LinearGradientBrush>
+    </Window.Background>
     <Grid>
         <ComboBox x:Name="cmbEquipos" HorizontalAlignment="Left" Margin="17,112,0,0" VerticalAlignment="Top" Width="174" SelectionChanged="cmbEquipos_SelectionChanged"/>
         <TextBox x:Name="txtNombreEquipo" HorizontalAlignment="Left" Height="23" Margin="614,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
@@ -60,7 +66,7 @@
         <Label Content="Apellido Paterno" HorizontalAlignment="Left" Margin="268,141,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <Label Content="Apellido Materno" HorizontalAlignment="Left" Margin="263,204,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <Label Content="Numero" HorizontalAlignment="Left" Margin="293,266,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <Separator HorizontalAlignment="Left" Height="14" Margin="0,206,0,0" VerticalAlignment="Top" Width="419" RenderTransformOrigin="0.5,0.5">
+        <Separator HorizontalAlignment="Left" Height="14" Margin="-1,205,0,0" VerticalAlignment="Top" Width="422" RenderTransformOrigin="0.5,0.5" Background="Black">
             <Separator.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -74,8 +80,31 @@
         <Button x:Name="btnEliminaEquipo" Content="Eliminar" HorizontalAlignment="Left" Margin="68,177,0,0" VerticalAlignment="Top" Width="75" IsEnabled="False" Click="btnEliminaEquipo_Click"/>
         <Image HorizontalAlignment="Left" Height="162" Margin="27,236,0,0" VerticalAlignment="Top" Width="161" Source="imagenes/sombra3.png"/>
         <Image HorizontalAlignment="Left" Height="58" Margin="78,35,0,0" VerticalAlignment="Top" Width="57" Source="imagenes/balon.png"/>
-        <Image HorizontalAlignment="Left" Height="68" Margin="805,343,0,0" VerticalAlignment="Top" Width="70" Source="imagenes/atras.png" MouseDown="Image_MouseDown"/>
+        <Image HorizontalAlignment="Left" Height="68" Margin="805,343,0,0" VerticalAlignment="Top" Width="70" MouseDown="Image_MouseDown">
+            <Image.Style>
+                <Style TargetType="{x:Type Image}">
+                    <Setter Property="Source" Value="imagenes/undo.png"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Source" Value="imagenes/undo_selected.png"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
+        </Image>
         <Button x:Name="btnGenerarJornadas" Content="Generar Jornadas" HorizontalAlignment="Left" Margin="630,360,0,0" VerticalAlignment="Top" Width="121" Click="btnGenerarJornadas_Click"/>
+        <Image x:Name="imgSave" HorizontalAlignment="Left" Height="71" Margin="770,20,0,0" VerticalAlignment="Top" Width="65">
+            <Image.Style>
+                <Style TargetType="{x:Type Image}">
+                    <Setter Property="Source" Value="imagenes/save1.png"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Source" Value="imagenes/save2.png"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
+        </Image>
 
     </Grid>
 </Window>

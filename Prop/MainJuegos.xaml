@@ -6,6 +6,12 @@
         xmlns:local="clr-namespace:Prop"
         mc:Ignorable="d"
         Title="Juegos" Height="450" Width="809" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" Icon="imagenes/balon.png" ResizeMode="NoResize">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FFA89B9D" Offset="0.003"/>
+            <GradientStop Color="White" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
     <Grid>
         <ListView x:Name="lvLocales" HorizontalAlignment="Left" Height="275" Margin="10,115,0,0" VerticalAlignment="Top" Width="275">
             <ListView.View>
@@ -102,7 +108,18 @@
         <Button x:Name="btnGuardaPartido" Content="Guardar" HorizontalAlignment="Left" Margin="345,245,0,0" VerticalAlignment="Top" Width="120" Click="btnGuardaPartido_Click"/>
         <Image x:Name="imgCheck" HorizontalAlignment="Left" Height="50" Margin="378,276,0,0" VerticalAlignment="Top" Width="55"/>
         <Image HorizontalAlignment="Left" Height="80" Margin="359,154,0,0" VerticalAlignment="Top" Width="78" Source="imagenes/sombra.png"/>
-        <Image HorizontalAlignment="Left" Height="55" Margin="378,350,0,0" VerticalAlignment="Top" Width="59" Source="imagenes/atras.png" MouseDown="Image_MouseDown"/>
+        <Image HorizontalAlignment="Left" Height="55" Margin="378,350,0,0" VerticalAlignment="Top" Width="59" MouseDown="Image_MouseDown">
+            <Image.Style>
+                <Style TargetType="{x:Type Image}">
+                    <Setter Property="Source" Value="imagenes/undo.png"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Source" Value="imagenes/undo_selected.png"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
+        </Image>
 
     </Grid>
 </Window>

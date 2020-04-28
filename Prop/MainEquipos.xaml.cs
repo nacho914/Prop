@@ -771,7 +771,6 @@ namespace Prop
 
             return bRegresar;
         }
-
     }
 
     public class Jugadores

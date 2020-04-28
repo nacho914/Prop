@@ -1,0 +1,80 @@
+﻿<Window x:Class="Prop.MainReportes"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Prop"
+        mc:Ignorable="d"
+        Title="Reportes" Height="450" Width="398" ResizeMode="NoResize" Icon="imagenes/balon.png" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FF89CE94" Offset="0"/>
+            <GradientStop Color="#FF86A59C" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    <Grid>
+        <Label Content="Generar Reporte de Liga" HorizontalAlignment="Left" Margin="46,11,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold"/>
+        <Image HorizontalAlignment="Left" Height="34" Margin="324,14,0,0" VerticalAlignment="Top" Width="29" Source="imagenes/Reporte.png" MouseDown="Image_MouseDown"/>
+        <GridSplitter HorizontalAlignment="Left" Height="395" Margin="192,-139,0,0" VerticalAlignment="Top" Width="7" RenderTransformOrigin="0.5,0.5">
+            <GridSplitter.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="89.911"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </GridSplitter.RenderTransform>
+        </GridSplitter>
+        <Label Content="Generar Reporte de Goleo" HorizontalAlignment="Left" Margin="46,72,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold"/>
+        <Image x:Name="imgRepoGoleo" HorizontalAlignment="Left" Height="34" Margin="322,75,0,0" VerticalAlignment="Top" Width="29" Source="imagenes/Reporte.png" MouseDown="imgRepoGoleo_MouseDown"/>
+        <GridSplitter HorizontalAlignment="Left" Height="395" Margin="192,-78,0,0" VerticalAlignment="Top" Width="7" RenderTransformOrigin="0.5,0.5">
+            <GridSplitter.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="89.911"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </GridSplitter.RenderTransform>
+        </GridSplitter>
+        <Image x:Name="imgRegresa" HorizontalAlignment="Left" Height="66" Margin="160,334,0,0" VerticalAlignment="Top" Width="75" MouseDown="imgRegresa_MouseDown">
+            <Image.Style>
+                <Style TargetType="{x:Type Image}">
+                    <Setter Property="Source" Value="imagenes/undo.png"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Source" Value="imagenes/undo_selected.png"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
+        </Image>
+        <Label Content="Generar Reporte de Jornada" HorizontalAlignment="Left" Margin="46,126,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold"/>
+        <Image x:Name="imgRepoGoleoJornada" HorizontalAlignment="Left" Height="34" Margin="320,141,0,0" VerticalAlignment="Top" Width="29" Source="imagenes/Reporte.png" MouseDown="imgRepoGoleoJornada_MouseDown"/>
+        <ComboBox x:Name="cmbJornada" HorizontalAlignment="Left" Margin="55,165,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cmbJornada_SelectionChanged"/>
+        <GridSplitter HorizontalAlignment="Left" Height="395" Margin="195,2,0,0" VerticalAlignment="Top" Width="7" RenderTransformOrigin="0.5,0.5">
+            <GridSplitter.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="89.911"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </GridSplitter.RenderTransform>
+        </GridSplitter>
+        <Label Content="Generar Reporte de Equipos" HorizontalAlignment="Left" Margin="46,210,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold"/>
+        <Image x:Name="imgRepoEquipos" HorizontalAlignment="Left" Height="34" Margin="320,225,0,0" VerticalAlignment="Top" Width="29" Source="imagenes/Reporte.png" MouseDown="imgRepoEquipos_MouseDown"/>
+        <ComboBox x:Name="cmbEquipos" HorizontalAlignment="Left" Margin="55,249,0,0" VerticalAlignment="Top" Width="180"/>
+        <GridSplitter HorizontalAlignment="Left" Height="409" Margin="194,82,0,-70" VerticalAlignment="Top" Width="7" RenderTransformOrigin="0.5,0.5">
+            <GridSplitter.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="89.911"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </GridSplitter.RenderTransform>
+        </GridSplitter>
+
+    </Grid>
+</Window>

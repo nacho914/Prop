@@ -5,21 +5,46 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Prop"
         mc:Ignorable="d"
-        Title="Selecciona un torneo" Height="200" Width="400" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="imagenes/balon.png">
+        Title="Selecciona un torneo" Height="200" Width="400" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="imagenes/balon.png" BorderBrush="#FFFDFDFD">
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-            <GradientStop Color="Black" Offset="0"/>
-            <GradientStop Color="White" Offset="1"/>
+            <GradientStop Color="#FF7765E3"/>
+            <GradientStop Color="#FF080708" Offset="1"/>
         </LinearGradientBrush>
     </Window.Background>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="339*"/>
-            <ColumnDefinition Width="55*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
-        <ComboBox x:Name="cmbtorneo" HorizontalAlignment="Left" Margin="96,45,0,0" VerticalAlignment="Top" Width="198" RenderTransformOrigin="0.196,-4.568" SelectionChanged="ComboBox_SelectionChanged" IsSynchronizedWithCurrentItem="False"/>
-        <Button x:Name="btnAceptarTorneo" Content="Cargar Torneo" HorizontalAlignment="Left" Margin="19,106,0,0" VerticalAlignment="Top" Width="107" Click="btnAceptarTorneo_Click"/>
-        <Button x:Name="btnEliminarTorneo" Content="Eliminar Torneo" HorizontalAlignment="Left" Margin="146,106,0,0" VerticalAlignment="Top" Width="107" Click="btnEliminarTorneo_Click"/>
-        <Button x:Name="btnModificaTorneo" Content="Modifica Torneo" HorizontalAlignment="Left" Margin="267,106,0,0" VerticalAlignment="Top" Width="107" Click="btnModificaTorneo_Click" Grid.ColumnSpan="2"/>
+        <ComboBox x:Name="cmbtorneo" HorizontalAlignment="Left" Margin="96,45,0,0" VerticalAlignment="Top" Width="198" RenderTransformOrigin="0.196,-4.568" SelectionChanged="ComboBox_SelectionChanged" IsSynchronizedWithCurrentItem="False" BorderBrush="#FFF9F9F9" Height="22">
+            <ComboBox.Background>
+                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                    <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                    <GradientStop Color="#FF34675C" Offset="1"/>
+                </LinearGradientBrush>
+            </ComboBox.Background>
+        </ComboBox>
+        <Button x:Name="btnAceptarTorneo" Content="Cargar Torneo" HorizontalAlignment="Left" Margin="22,116,0,0" VerticalAlignment="Top" Width="107" Click="btnAceptarTorneo_Click" Background="#FFD8E0CB" Height="20">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="8"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="btnEliminarTorneo" Content="Eliminar Torneo" HorizontalAlignment="Left" Margin="143,116,0,0" VerticalAlignment="Top" Width="107" Click="btnEliminarTorneo_Click" Background="#FFD8E0CB" Height="20">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="8"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="btnModificaTorneo" Content="Modifica Torneo" HorizontalAlignment="Left" Margin="263,115,0,0" VerticalAlignment="Top" Width="107" Click="btnModificaTorneo_Click" Background="#FFD8E0CB" Height="20">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="8"/>
+                </Style>
+            </Button.Resources>
+        </Button>
     </Grid>
 </Window>

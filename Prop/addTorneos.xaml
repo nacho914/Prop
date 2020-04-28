@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Prop"
         mc:Ignorable="d"
-        Title="Agregar nuevo torneo" Height="391" Width="378" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" ShowInTaskbar="False" Loaded="Window_Loaded">
+        Title="Agregar nuevo torneo" Height="391" Width="378" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" ShowInTaskbar="False" Loaded="Window_Loaded" Icon="imagenes/balon.png">
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
             <GradientStop Color="Black" Offset="0"/>
@@ -13,13 +13,14 @@
         </LinearGradientBrush>
     </Window.Background>
     <Grid>
-        <Button x:Name="btnGuardarTorneo" Content="Guardar" HorizontalAlignment="Left" Margin="127,321,0,0" VerticalAlignment="Top" Width="113" Click="btnGuardarTorneo_Click"/>
+        <Button x:Name="btnGuardarTorneo" Content="Guardar" HorizontalAlignment="Left" Margin="46,320,0,0" VerticalAlignment="Top" Width="113" Click="btnGuardarTorneo_Click"/>
         <TextBox x:Name="txtNombreTorneo" HorizontalAlignment="Left" Height="23" Margin="59,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="271"/>
         <Label Content="Favor de agregar el nombre del torneo" HorizontalAlignment="Left" Margin="87,17,0,0" VerticalAlignment="Top" Width="222" Foreground="#FFF0C2C2"/>
         <Button x:Name="btnImagenTorneo" Content="Cargar logo" HorizontalAlignment="Left" Margin="196,140,0,0" VerticalAlignment="Top" Width="134" Click="btnImagenTorneo_Click"/>
         <Image x:Name="imgDrop" HorizontalAlignment="Left" Height="100" Margin="59,100,0,0" VerticalAlignment="Top" Width="100" OpacityMask="Black"/>
         <Image x:Name="imgDrop2" HorizontalAlignment="Left" Height="100" Margin="59,206,0,0" VerticalAlignment="Top" Width="100" OpacityMask="Black"/>
         <Button x:Name="btnimagen2" Content="Cargar otro logo" HorizontalAlignment="Left" Margin="196,243,0,0" VerticalAlignment="Top" Width="134" Click="btnimagen2_Click"/>
+        <Button x:Name="btnRegresar" Content="Regresar" HorizontalAlignment="Left" Margin="196,320,0,0" VerticalAlignment="Top" Width="113" Click="btnRegresar_Click"/>
 
     </Grid>
 </Window>

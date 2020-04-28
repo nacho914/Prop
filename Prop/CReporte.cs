@@ -73,9 +73,9 @@ namespace Prop
                         var image2 = string.Format("<img src='{0}' />", urlImg2);
                         return string.Format(@"<table style='width: 100%;font-size:25pt;font-family:tahoma;'>
 										            <tr>
-											            <td align='center'>{0}</td>
-                                                        <td align='center'>{1}</td>
-                                                        <td align='center'>{2}</td>
+											            <td style='width: 25%;' align='center'>{0}</td>
+                                                        <td style='width: 50%;' align='center'>{1}</td>
+                                                        <td style='width: 25%;' align='center'>{2}</td>
 										            </tr>										            
 								                </table>", image, message, image2);
                     });

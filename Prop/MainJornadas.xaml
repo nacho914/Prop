@@ -6,6 +6,12 @@
         xmlns:local="clr-namespace:Prop"
         mc:Ignorable="d"
         Title="Jornadas" Height="450" Width="800" ResizeMode="NoResize" Loaded="Window_Loaded" Icon="imagenes/balon.png" WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FFFDFDF9"/>
+            <GradientStop Color="#FFDDD92A" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
     <Grid>
         <Label x:Name="lbl_principal" Content="Jornadas Completas" HorizontalAlignment="Left" Margin="316,24,0,0" VerticalAlignment="Top" FontSize="48" FontFamily="Tw Cen MT Condensed Extra Bold"/>
         <ComboBox Name="cmb_jornadas" HorizontalAlignment="Left" Margin="16,46,0,0" VerticalAlignment="Top" Width="180" SelectionChanged="cmb_jornadas_SelectionChanged"/>
@@ -55,7 +61,18 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Image HorizontalAlignment="Left" Height="60" Margin="705,345,0,0" VerticalAlignment="Top" Width="60" Source="imagenes/atras.png" MouseDown="Image_MouseDown"/>
+        <Image HorizontalAlignment="Left" Height="60" Margin="705,345,0,0" VerticalAlignment="Top" Width="60" MouseDown="Image_MouseDown">
+            <Image.Style>
+                <Style TargetType="{x:Type Image}">
+                    <Setter Property="Source" Value="imagenes/undo.png"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Source" Value="imagenes/undo_selected.png"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
+        </Image>
         <Image HorizontalAlignment="Left" Height="75" Margin="705,24,0,0" VerticalAlignment="Top" Width="79" Source="imagenes/sombra2.png"/>
 
     </Grid>

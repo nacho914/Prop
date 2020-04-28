@@ -89,12 +89,6 @@ namespace Prop
             
         }
 
-
-
-
-
-      
-
         private void llenarComboJornadas()
         {
             Dictionary<string, string> listJornadas = new Dictionary<string, string>();
