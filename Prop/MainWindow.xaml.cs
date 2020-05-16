@@ -54,22 +54,24 @@ namespace Prop
         {
             var macAddr = (from nic in NetworkInterface.GetAllNetworkInterfaces() where nic.OperationalStatus == OperationalStatus.Up select nic.GetPhysicalAddress().ToString()).FirstOrDefault();
             //MessageBox.Show(macAddr);
-           if(macAddr.Equals("E4D53DBF3B20"))
+           //if(macAddr.Equals("E4D53DBF3B20"))
             {
                 //var rpt = new IListPdfReport().CreatePdfReport();
                 cargarDatosTorneo();
                 cargarTabla();
                 cargarGoleadores();
                 
+                
             }
-            else
+            /*else
             {
 
                 MessageBox.Show("Este no es tu sistema, sal de aqui perro de la calle");
                 mModifica.IsEnabled = false;
                 mJuegos.IsEnabled = false;
                 mJornadas.IsEnabled = false;
-            }
+                mReportes.IsEnabled = false;
+            }*/
             // MessageBox.Show(macAddr);
         }
 

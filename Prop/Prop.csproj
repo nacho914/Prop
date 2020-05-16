@@ -207,7 +207,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="imagenes\balon.png" />
+    <SplashScreen Include="imagenes\balon.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="imagenes\nocheck.png" />

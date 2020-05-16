@@ -8,8 +8,8 @@
         Title="Reportes" Height="450" Width="398" ResizeMode="NoResize" Icon="imagenes/balon.png" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-            <GradientStop Color="#FF89CE94" Offset="0"/>
-            <GradientStop Color="#FF86A59C" Offset="1"/>
+            <GradientStop Color="#FF84DCC6" Offset="0"/>
+            <GradientStop Color="#FF4B4E6D" Offset="1"/>
         </LinearGradientBrush>
     </Window.Background>
     <Grid>

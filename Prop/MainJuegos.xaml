@@ -8,8 +8,8 @@
         Title="Juegos" Height="450" Width="809" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" Icon="imagenes/balon.png" ResizeMode="NoResize">
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-            <GradientStop Color="#FFA89B9D" Offset="0.003"/>
-            <GradientStop Color="White" Offset="1"/>
+            <GradientStop Color="#FF84DCC6"/>
+            <GradientStop Color="#FF4B4E6D" Offset="1"/>
         </LinearGradientBrush>
     </Window.Background>
     <Grid>

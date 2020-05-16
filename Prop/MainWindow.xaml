@@ -8,8 +8,8 @@
         Title="MainWindow" Height="556" Width="1063" ResizeMode="NoResize" Loaded="Window_Loaded" Icon="imagenes/balon.png" WindowStartupLocation="CenterScreen">
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-            <GradientStop Color="Black" Offset="1"/>
-            <GradientStop Color="#FFF9E7E7"/>
+            <GradientStop Color="#FF4B4E6D" Offset="1"/>
+            <GradientStop Color="#FF84DCC6"/>
         </LinearGradientBrush>
     </Window.Background>
     <Grid Margin="0,0,2,-19">
