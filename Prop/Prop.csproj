@@ -207,7 +207,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <SplashScreen Include="imagenes\balon.png" />
+    <Resource Include="imagenes\balon.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="imagenes\nocheck.png" />
@@ -236,6 +236,9 @@
   <ItemGroup>
     <Resource Include="imagenes\save1.png" />
     <Resource Include="imagenes\save2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <SplashScreen Include="imagenes\LOGO-PROP.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
