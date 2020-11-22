@@ -60,7 +60,7 @@
         <TextBox x:Name="txtNombreJugador" HorizontalAlignment="Left" Height="23" Margin="257,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="txApellidoPaterno" HorizontalAlignment="Left" Height="23" Margin="232,169,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="163"/>
         <TextBox x:Name="txtApellidoMaterno" HorizontalAlignment="Left" Height="23" Margin="232,238,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="163"/>
-        <TextBox x:Name="txtNumero" MaxLength="3" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Height="23" Margin="293,291,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="54" PreviewTextInput="txtNumero_PreviewTextInput"/>
+        <TextBox x:Name="txtNumero" MaxLength="5" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Height="23" Margin="293,291,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="54" PreviewTextInput="txtNumero_PreviewTextInput"/>
         <Button x:Name="btnAgregarJugador" Content="Agregar Jugador" HorizontalAlignment="Left" Margin="264,335,0,0" VerticalAlignment="Top" Width="105" Click="btnAgregarJugador_Click"/>
         <Label Content="Nombre Jugador" HorizontalAlignment="Left" Margin="264,67,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <Label Content="Apellido Paterno" HorizontalAlignment="Left" Margin="268,141,0,0" VerticalAlignment="Top" FontWeight="Bold"/>

@@ -339,29 +339,38 @@ namespace Prop
         {
             int index = lvUsers.SelectedIndex;
 
-            if (index == -1)
+            try
             {
-                lvUsers.ItemsSource = null;
-                items.Add(new Jugadores() { nombre = txtNombreJugador.Text, apellidoPaterno = txApellidoPaterno.Text, apellidoMaterno = txtApellidoMaterno.Text, numero = System.Convert.ToInt32(txtNumero.Text), id = 0 });
-                lvUsers.ItemsSource = items;
-                LimpiarTxt();
 
+                if (index == -1)
+                {
+                    lvUsers.ItemsSource = null;
+                    items.Add(new Jugadores() { nombre = txtNombreJugador.Text, apellidoPaterno = txApellidoPaterno.Text, apellidoMaterno = txtApellidoMaterno.Text, numero = System.Convert.ToInt32(txtNumero.Text), id = 0 });
+                    lvUsers.ItemsSource = items;
+                    LimpiarTxt();
+
+                }
+                else
+                {
+                    items[lvUsers.SelectedIndex].nombre = txtNombreJugador.Text;
+                    items[lvUsers.SelectedIndex].apellidoPaterno = txApellidoPaterno.Text;
+                    items[lvUsers.SelectedIndex].apellidoMaterno = txtApellidoMaterno.Text;
+                    items[lvUsers.SelectedIndex].numero = Int32.Parse(txtNumero.Text);
+                    lvUsers.ItemsSource = null;
+                    lvUsers.ItemsSource = items;
+                    lvUsers.SelectedIndex = index;
+                    LimpiarTxt();
+
+                }
+
+                btnAgregarJugador.Content = "Agregar Jugador";
+                lvUsers.SelectedIndex = -1;
             }
-            else
+            catch
             {
-                items[lvUsers.SelectedIndex].nombre = txtNombreJugador.Text;
-                items[lvUsers.SelectedIndex].apellidoPaterno = txApellidoPaterno.Text;
-                items[lvUsers.SelectedIndex].apellidoMaterno = txtApellidoMaterno.Text;
-                items[lvUsers.SelectedIndex].numero = Int32.Parse(txtNumero.Text);
-                lvUsers.ItemsSource = null;
+                MessageBox.Show("Favor de validar que lleves todos los datos");
                 lvUsers.ItemsSource = items;
-                lvUsers.SelectedIndex = index;
-                LimpiarTxt();
-
             }
-
-            btnAgregarJugador.Content = "Agregar Jugador";
-            lvUsers.SelectedIndex = -1;
         }
 
         private void cmbEquipos_SelectionChanged(object sender, SelectionChangedEventArgs e)
