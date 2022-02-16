@@ -116,6 +116,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MainImportar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainJornadas.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -149,6 +153,9 @@
     <Compile Include="CReporte.cs" />
     <Compile Include="MainEquipos.xaml.cs">
       <DependentUpon>MainEquipos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainImportar.xaml.cs">
+      <DependentUpon>MainImportar.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainJornadas.xaml.cs">
       <DependentUpon>MainJornadas.xaml</DependentUpon>
@@ -239,6 +246,16 @@
   </ItemGroup>
   <ItemGroup>
     <SplashScreen Include="imagenes\LOGO-PROP.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="sombra2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="balon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\import.png" />
+    <Resource Include="imagenes\import2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

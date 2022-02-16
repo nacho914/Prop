@@ -57,15 +57,15 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <TextBox x:Name="txtNombreJugador" HorizontalAlignment="Left" Height="23" Margin="257,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="txApellidoPaterno" HorizontalAlignment="Left" Height="23" Margin="232,169,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="163"/>
-        <TextBox x:Name="txtApellidoMaterno" HorizontalAlignment="Left" Height="23" Margin="232,238,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="163"/>
-        <TextBox x:Name="txtNumero" MaxLength="5" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Height="23" Margin="293,291,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="54" PreviewTextInput="txtNumero_PreviewTextInput"/>
-        <Button x:Name="btnAgregarJugador" Content="Agregar Jugador" HorizontalAlignment="Left" Margin="264,335,0,0" VerticalAlignment="Top" Width="105" Click="btnAgregarJugador_Click"/>
-        <Label Content="Nombre Jugador" HorizontalAlignment="Left" Margin="264,67,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <Label Content="Apellido Paterno" HorizontalAlignment="Left" Margin="268,141,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <Label Content="Apellido Materno" HorizontalAlignment="Left" Margin="263,204,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <Label Content="Numero" HorizontalAlignment="Left" Margin="293,266,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <TextBox x:Name="txtNombreJugador" HorizontalAlignment="Left" Height="23" Margin="257,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txApellidoPaterno" HorizontalAlignment="Left" Height="23" Margin="232,138,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="163"/>
+        <TextBox x:Name="txtApellidoMaterno" HorizontalAlignment="Left" Height="23" Margin="232,207,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="163"/>
+        <TextBox x:Name="txtNumero" MaxLength="5" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Height="23" Margin="293,260,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="54" PreviewTextInput="txtNumero_PreviewTextInput"/>
+        <Button x:Name="btnAgregarJugador" Content="Agregar Jugador" HorizontalAlignment="Left" Margin="264,304,0,0" VerticalAlignment="Top" Width="105" Click="btnAgregarJugador_Click"/>
+        <Label Content="Nombre Jugador" HorizontalAlignment="Left" Margin="264,36,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Apellido Paterno" HorizontalAlignment="Left" Margin="268,110,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Apellido Materno" HorizontalAlignment="Left" Margin="263,173,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Numero" HorizontalAlignment="Left" Margin="293,235,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <Separator HorizontalAlignment="Left" Height="14" Margin="-1,205,0,0" VerticalAlignment="Top" Width="422" RenderTransformOrigin="0.5,0.5" Background="Black">
             <Separator.RenderTransform>
                 <TransformGroup>
@@ -93,13 +93,13 @@
             </Image.Style>
         </Image>
         <Button x:Name="btnGenerarJornadas" Content="Generar Jornadas" HorizontalAlignment="Left" Margin="630,360,0,0" VerticalAlignment="Top" Width="121" Click="btnGenerarJornadas_Click"/>
-        <Image x:Name="imgSave" HorizontalAlignment="Left" Height="71" Margin="770,20,0,0" VerticalAlignment="Top" Width="65">
+        <Image x:Name="img_import" HorizontalAlignment="Left" Height="71" Margin="805,20,0,0" VerticalAlignment="Top" Width="65" MouseDown="img_import_MouseDown">
             <Image.Style>
                 <Style TargetType="{x:Type Image}">
-                    <Setter Property="Source" Value="imagenes/save1.png"/>
+                    <Setter Property="Source" Value="imagenes/import.png"/>
                     <Style.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Source" Value="imagenes/save2.png"/>
+                            <Setter Property="Source" Value="imagenes/import2.png"/>
                         </Trigger>
                     </Style.Triggers>
                 </Style>

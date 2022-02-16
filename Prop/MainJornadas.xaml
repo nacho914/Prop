@@ -13,7 +13,7 @@
         </LinearGradientBrush>
     </Window.Background>
     <Grid>
-        <Label x:Name="lbl_principal" Content="Jornadas Completas" HorizontalAlignment="Left" Margin="316,24,0,0" VerticalAlignment="Top" FontSize="48" FontFamily="Tw Cen MT Condensed Extra Bold"/>
+        <Label x:Name="lbl_principal" Content="Jornadas Completas" HorizontalAlignment="Left" Margin="270,24,0,0" VerticalAlignment="Top" FontSize="48" FontFamily="Tw Cen MT Condensed Extra Bold"/>
         <ComboBox Name="cmb_jornadas" HorizontalAlignment="Left" Margin="16,46,0,0" VerticalAlignment="Top" Width="180" SelectionChanged="cmb_jornadas_SelectionChanged"/>
         <ListView Name="lvJornadasPrincipal" HorizontalAlignment="Left" Height="225" Margin="12,111,0,0" VerticalAlignment="Top" Width="680">
             <ListView.View>

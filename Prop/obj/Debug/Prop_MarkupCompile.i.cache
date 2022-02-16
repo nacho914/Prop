@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\uno\Desktop\Proyectos\Prop\Prop\obj\Debug\
+C:\Users\usuario\Desktop\Proyectos\Prop\Prop\obj\Debug\
 Prop
 none
 false
 DEBUG;TRACE
-C:\Users\uno\Desktop\Proyectos\Prop\Prop\App.xaml
-72034346293
-21670985192
-191210899443
-27729925833
-addTorneos.xaml;MainEquipos.xaml;MainJornadas.xaml;MainJuegos.xaml;MainReportes.xaml;MainTorneo.xaml;MainWindow.xaml;
+C:\Users\usuario\Desktop\Proyectos\Prop\Prop\App.xaml
+8536257945
+2-807998591
+171516080974
+27-1758074389
+addTorneos.xaml;MainEquipos.xaml;MainImportar.xaml;MainJornadas.xaml;MainJuegos.xaml;MainReportes.xaml;MainTorneo.xaml;MainWindow.xaml;
 imagenes\logo-prop.png
-True
+False
 

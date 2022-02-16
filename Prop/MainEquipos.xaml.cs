@@ -780,6 +780,14 @@ namespace Prop
 
             return bRegresar;
         }
+
+        private void img_import_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            MainImportar mImporta = new MainImportar();
+            mImporta.iIdTorneo = iIdTorneo;
+            mImporta.Show();
+            this.Close();
+        }
     }
 
     public class Jugadores
