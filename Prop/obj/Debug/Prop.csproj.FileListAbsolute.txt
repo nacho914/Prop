@@ -211,3 +211,5 @@ C:\Users\usuario\Desktop\Proyectos\Prop\Prop\obj\Debug\Prop.exe
 C:\Users\usuario\Desktop\Proyectos\Prop\Prop\obj\Debug\Prop.pdb
 C:\Users\usuario\Desktop\Proyectos\Prop\Prop\obj\Debug\MainImportar.g.cs
 C:\Users\usuario\Desktop\Proyectos\Prop\Prop\obj\Debug\MainImportar.baml
+C:\Users\nacho\Desktop\Proyectos\Prop\Prop\obj\Debug\MainImportar.g.cs
+C:\Users\nacho\Desktop\Proyectos\Prop\Prop\obj\Debug\MainImportar.baml

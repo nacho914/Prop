@@ -25,6 +25,7 @@ namespace Prop
         public string sNombreTorneo;
         public List<Jugadores> items;
         private static readonly Regex _regex = new Regex("[^0-9]+"); //regex that matches disallowed text
+        private static readonly Regex _regexLetters = new Regex("[^A-Za-z0-9]+");
         bool bJornadasGeneradas = false;
 
         public List<equipos> equipo;
@@ -530,7 +531,14 @@ namespace Prop
             return !_regex.IsMatch(text);
         }
 
-        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
+        private static bool IsTextAllowedSlash(string text)
+        {
+            return !_regexLetters.IsMatch(text);
+        }
+
+
+
+            private void Image_MouseDown(object sender, MouseButtonEventArgs e)
         {
             MainWindow main = new MainWindow();
             main.iIdTorneo = this.iIdTorneo;
@@ -787,6 +795,11 @@ namespace Prop
             mImporta.iIdTorneo = iIdTorneo;
             mImporta.Show();
             this.Close();
+        }
+
+        private void txtNombreEquipo_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !IsTextAllowedSlash(e.Text);
         }
     }
 

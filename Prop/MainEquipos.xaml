@@ -14,7 +14,7 @@
     </Window.Background>
     <Grid>
         <ComboBox x:Name="cmbEquipos" HorizontalAlignment="Left" Margin="17,112,0,0" VerticalAlignment="Top" Width="174" SelectionChanged="cmbEquipos_SelectionChanged"/>
-        <TextBox x:Name="txtNombreEquipo" HorizontalAlignment="Left" Height="23" Margin="614,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txtNombreEquipo" HorizontalAlignment="Left" Height="23" Margin="614,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewTextInput="txtNombreEquipo_PreviewTextInput"/>
         <Button x:Name="btnCreaEquipo" Content="Crea al equipo" HorizontalAlignment="Left" Margin="425,360,0,0" VerticalAlignment="Top" Width="125" Click="btnCreaEquipo_Click"/>
         <ListView Margin="409,96,10,98" Name="lvUsers" MouseDoubleClick="lvUsers_MouseDoubleClick">
             <ListView.View>
