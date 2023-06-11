@@ -27,6 +27,7 @@ namespace Prop
         private static readonly Regex _regex = new Regex("[^0-9]+"); //regex that matches disallowed text
         private static readonly Regex _regexLetters = new Regex("[^A-Za-z0-9]+");
         bool bJornadasGeneradas = false;
+        bool bGenerarIdaVuelta = false;
 
         public List<equipos> equipo;
         public List<Partidos> Partido;
@@ -327,13 +328,21 @@ namespace Prop
             bJornadasGeneradas = VerificarJornadasGeneradas();
 
             if (bJornadasGeneradas)
-            { 
-                btnEliminaEquipo.IsEnabled = false;
-                btnCreaEquipo.IsEnabled = false;
-                btnGenerarJornadas.Visibility = Visibility.Hidden;
+            {
+                ocultarElementos();
             }
             else
                 btnGenerarJornadas.Visibility = Visibility.Visible;
+        }
+
+        private void ocultarElementos()
+        {
+            btnEliminaEquipo.IsEnabled = false;
+            btnEliminaEquipo.Visibility = Visibility.Hidden;
+            btnCreaEquipo.IsEnabled = false;
+            btnGenerarJornadas.Visibility = Visibility.Hidden;
+            checkVuelta.IsEnabled = false;
+            checkVuelta.Visibility = Visibility.Hidden;
         }
 
         private void btnAgregarJugador_Click(object sender, RoutedEventArgs e)
@@ -592,6 +601,8 @@ namespace Prop
 
                     guardarJornadas();
                     marcarJornadasTorneo();
+                    bJornadasGeneradas = true;
+                    ocultarElementos();
                 }
 
                
@@ -672,6 +683,8 @@ namespace Prop
                         iMax = iJornadas;
                 }
             }
+
+            generarVuelta(iJornadas);
         }
 
         public void generarJornadasImpares()
@@ -724,6 +737,23 @@ namespace Prop
                         iMax = iJornadas;
                 }
             }
+
+            generarVuelta(iJornadas);
+        }
+
+        public void generarVuelta(int totalJornadas)
+        {
+            if(bGenerarIdaVuelta)
+            {
+                List<Partidos> partidosVuelta = new List<Partidos>();
+                foreach (Partidos x in Partido)
+                {
+                    partidosVuelta.Add(new Partidos { jornada = x.jornada + totalJornadas, local = x.visitante, visitante = x.local });
+                }
+
+                Partido.AddRange(partidosVuelta);
+            }
+
         }
 
         public void guardarJornadas()
@@ -801,6 +831,17 @@ namespace Prop
         {
             e.Handled = !IsTextAllowedSlash(e.Text);
         }
+
+        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            bGenerarIdaVuelta = false;
+        }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            bGenerarIdaVuelta = true;
+        }
+
     }
 
     public class Jugadores
